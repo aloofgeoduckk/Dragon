@@ -211,6 +211,13 @@ Updates
 23/03/2025<br>
 - Added automatic updater.
 </p>
+<p>
+12/04/2025<br>
+- Added global ratelimit handling.<br>
+- Fixed Get Transaction By Timestamp<br>
+- Fixed fake user agent prompting a browser error.<br>
+- Optimised code and removed repeated and unnecessary code.
+</p>
 
 <h1 align="left">
 Donations
