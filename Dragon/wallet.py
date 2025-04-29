@@ -9,7 +9,6 @@ from contextlib import redirect_stderr
 from fake_useragent import UserAgent
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Global event to manage rate limit cooldowns.
 globalRatelimitEvent = threading.Event()
 
 class BulkWalletChecker:
@@ -160,6 +159,13 @@ class BulkWalletChecker:
         winrate7d = f"{data['winrate'] * 100:.2f}%" if data['winrate'] is not None else "?"
         solBalance = f"{float(data['sol_balance']):.2f}" if data['sol_balance'] is not None else "?"
         buy7d = f"{data['buy_7d']}" if data['buy_7d'] is not None else "?"
+        averageHoldingDuration =  (
+            f"{data['avg_holding_peroid']}s" if data['avg_holding_peroid'] < 60 
+            else (
+                f"{data['avg_holding_peroid'] / 60:.2f}m" if data['avg_holding_peroid'] < 3600 
+                else f"{data['avg_holding_peroid'] / 3600:.2f}h"
+            )
+        ) if data['avg_holding_peroid'] is not None else "?"
 
         if "Skipped" in data.get("tags", []):
             return {
@@ -177,6 +183,7 @@ class BulkWalletChecker:
         return {
             "wallet": wallet,
             "totalProfitPercent": totalProfitPercent,
+            "averageHoldingMins": averageHoldingDuration,
             "7dUSDProfit": realizedProfit7dUSD,
             "30dUSDProfit": realizedProfit30dUSD,  # This remains if you want to keep the 30d profit data.
             "winrate_7d": winrate7d,

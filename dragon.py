@@ -211,7 +211,7 @@ def solana():
 
             print(f"[🐲] Selected {options[optInput - 1]}")
             if optInput == 1:
-                contractAddress = getContractAddress("Solana", [43, 44])
+                contractAddress = getContractAddress([43, 44])
                 txHashes = bundleInstance.teamTrades(contractAddress)
                 bundleData = bundleInstance.checkBundle(txHashes[0], txHashes[1])
                 print(bundleInstance.prettyPrint(bundleData, contractAddress))

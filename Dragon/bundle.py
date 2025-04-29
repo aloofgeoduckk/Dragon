@@ -75,7 +75,7 @@ class BundleFinder:
         return text
 
     def teamTrades(self, contractAddress):
-        url = f"https://gmgn.ai/defi/quotation/v1/trades/sol/{contractAddress}?limit=100&maker=&tag%5B%5D=creator&tag%5B%5D=dev_team"
+        url = f"https://gmgn.ai/vas/api/v1/token_trades/sol/4BRummYdfvoEGQwYzTSmn5F6RyAFdrHUTFkeagobpump?revert=true"
         retries = 3
         
         for attempt in range(retries):
